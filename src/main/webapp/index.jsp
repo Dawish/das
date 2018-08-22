@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>DTT系统首页</title>
+	<title>Das</title>
 	<link rel="stylesheet" type="text/css" href="${basePath}/css/all.css"/>
 	<link rel="stylesheet" type="text/css" href="${basePath}/css/pop.css"/>
 	<link rel="stylesheet" type="text/css" href="${basePath}/css/main.css"/>
@@ -10,11 +10,11 @@
 </head>
 
 <body>
-<div id="tipes">DTT系统欢迎你!</div>
+<div id="tipes">Das</div>
 <div class="body">
 	<div style="text-align: center; margin-top: 30px;">
-		<input class="tabSub" value="保     存" type="button" onclick=""/>&nbsp;&nbsp;&nbsp;&nbsp;
-		<input class="tabSub" value="广告列表" type="button" onclick="goback();"/>
+		<input class="tabSub" value="save" type="button" onclick=""/>&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="tabSub" value="adList" type="button" onclick="goback();"/>
 	</div>
 </div>
 </body>

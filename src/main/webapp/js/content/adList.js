@@ -3,6 +3,7 @@ $(function() {
 });
 
 function search(currentPage) {
+	console.log("search L: "+currentPage);
 	$("#currentPage").val(currentPage);
 	$("#mainForm").submit();
 }

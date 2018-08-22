@@ -2,6 +2,7 @@ package d.as.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,8 @@ import d.as.service.AdService;
 @Controller
 @RequestMapping("/ad")
 public class AdController {
+	
+	private static final Logger LOGGER = Logger.getLogger(AdController.class);
 	
 	@Autowired
 	AdService adService;
@@ -31,6 +34,14 @@ public class AdController {
 	}
 	
 	/**
+	 * 新增页初始化
+	 */
+	@RequestMapping("/addInit")
+	public String addInit() {
+		return "/content/adAdd";
+	}
+	
+	/**
 	 * 新增
 	 */
 	@RequestMapping("/add")
@@ -41,6 +52,16 @@ public class AdController {
 			model.addAttribute(PageCodeEnum.KEY, PageCodeEnum.ADD_FAIL);
 		}
 		return "/content/adAdd";
+	}
+	
+	/**
+	 * 查询
+	 */
+	@RequestMapping("/search")
+	public String search(Model model, AdDto adDto) {
+		model.addAttribute("list", adService.searchByPage(adDto));
+		model.addAttribute("searchParam", adDto);
+		return "/content/adList";
 	}
 	
 	/**
@@ -55,5 +76,29 @@ public class AdController {
 		}
 		return "forward:/ad";
 	}
-	
+
+	/**
+	 * 修改页初始化
+	 */
+	@RequestMapping("/modifyInit")
+	public String modifyInit(Model model, @RequestParam("id") Long id) {
+		LOGGER.debug("===modifyInit===");
+		model.addAttribute("modifyObj", adService.getById(id));
+		return "/content/adModify";
+	}
+
+	/**
+	 * 修改
+	 */
+	@RequestMapping("/modify")
+	public String modify(Model model, AdDto adDto) {
+		LOGGER.debug("===modify===");
+		model.addAttribute("modifyObj", adDto);
+		if (adService.modify(adDto)) {
+			model.addAttribute(PageCodeEnum.KEY, PageCodeEnum.MODIFY_SUCCESS);
+		} else {
+			model.addAttribute(PageCodeEnum.KEY, PageCodeEnum.MODIFY_FAIL);
+		}
+		return "/content/adModify";
+	}
 }

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE"/>
-		<title>DTT系统添加广告页面</title>
+		<title>Das系统添加广告页面</title>
 		<link rel="stylesheet" type="text/css" href="${basePath}/css/all.css"/>
 		<link rel="stylesheet" type="text/css" href="${basePath}/css/pop.css"/>
 		<link rel="stylesheet" type="text/css" href="${basePath}/css/main.css"/>
