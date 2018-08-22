@@ -10,5 +10,23 @@
 		 values(#{title},#{imgFileName},#{link},#{weight})
 	</insert>	
 	
+	<select id="selectByPage" resultType="d.as.bean.Ad">
+		select id,title,img_file_name,link,weight from ad
+		<where>
+			<if test="title != null and title != ''">
+				title like '%' #{title} '%'
+			</if>
+		</where>
+		order by weight desc,id
+	</select>
+	
+	<select id="selectById" resultType="d.as.bean.Ad">
+		select id,title,img_file_name,link,weight from ad where id=#{_parameter}
+	</select>
+	
+	<delete id="delete">
+		delete from ad where id=#{_parameter}
+	</delete>
+	
 </mapper>
 

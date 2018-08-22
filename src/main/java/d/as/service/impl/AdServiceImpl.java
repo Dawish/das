@@ -2,8 +2,9 @@ package d.as.service.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import d.as.bean.Ad;
 import d.as.dao.AdDao;
 import d.as.dto.AdDto;
 import d.as.service.AdService;
+import d.as.util.FileUtil;
 
 @Service
 public class AdServiceImpl implements AdService {
@@ -58,13 +60,26 @@ public class AdServiceImpl implements AdService {
 	@Override
 	public List<AdDto> searchByPage(AdDto adDto) {
 		// TODO Auto-generated method stub
-		return null;
+		List<AdDto> result = new ArrayList<AdDto>();
+		Ad condition = new Ad();
+		BeanUtils.copyProperties(adDto, condition);
+		List<Ad> adList = adDao.selectByPage(condition);
+		for (Ad ad : adList) {
+			AdDto adDtoTemp = new AdDto();
+			result.add(adDtoTemp);
+			adDtoTemp.setImg(adImageUrl + ad.getImgFileName());
+			BeanUtils.copyProperties(ad, adDtoTemp);
+		}
+		return result;
 	}
 
 	@Override
 	public boolean remove(Long id) {
 		// TODO Auto-generated method stub
-		return false;
+		Ad ad = adDao.selectById(id);
+		int deleteRows = adDao.delete(id);
+		FileUtil.delete(adImageSavePath + ad.getImgFileName());
+		return deleteRows == 1;
 	}
 
 	@Override
