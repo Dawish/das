@@ -11,7 +11,7 @@ $(function() {
 			}
 		},
 		messages : {
-			"title" : "请输入标题！"
+			"title" : "请输入标题！",
 		}
 	});
 });
