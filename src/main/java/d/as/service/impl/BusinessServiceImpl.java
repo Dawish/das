@@ -43,6 +43,9 @@ public class BusinessServiceImpl implements BusinessService {
 		return result;
 	}
 
+	/**
+	 * 为前端页面查询所有的商户，所有的商户，不管城市和类型！
+	 */
 	@Override
 	public List<BusinessDto> searchByPage(BusinessDto businessDto) {
 		List<BusinessDto> result = new ArrayList<>();
@@ -58,7 +61,10 @@ public class BusinessServiceImpl implements BusinessService {
 		}
 		return result;
 	}
-
+	
+	/**
+	 * 根据城市、类别和输入信息来搜索商户
+	 */
 	@Override
 	public BusinessListDto searchByPageForApi(BusinessDto businessDto) {
 		BusinessListDto result = new BusinessListDto();
@@ -80,7 +86,7 @@ public class BusinessServiceImpl implements BusinessService {
 		// 前端app页码从0开始计算，这里需要+1
 		int currentPage = businessForSelect.getPage().getCurrentPage();
 		businessForSelect.getPage().setCurrentPage(currentPage + 1);
-
+		// 相似搜索
 		List<Business> list = businessDao.selectLikeByPage(businessForSelect);
 
 		// 经过查询后根据page对象设置hasMore
