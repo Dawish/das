@@ -45,4 +45,10 @@ public interface BusinessDao {
      * @return
      */
     int updateStar(Map<String,Date> map);
+    
+    /**
+     * 更新用户订单数量
+     * @return
+     */
+    int updateNumber();
 }
