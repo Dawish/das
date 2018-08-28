@@ -77,6 +77,16 @@ public class ApiController {
 	/**
 	 * 详情页 - 商户信息
 	 */
+	@RequestMapping(value = "/allbusiness", method = RequestMethod.GET)
+	public List<BusinessDto> detail() {
+		BusinessDto businessDto = new BusinessDto();
+		businessDto.getPage().setPageNumber(businessSearchNumber);
+		return businessService.searchByPage(businessDto);
+	}
+	
+	/**
+	 * 详情页 - 商户信息
+	 */
 	@RequestMapping(value = "/detail/info/{id}", method = RequestMethod.GET)
 	public BusinessDto detail(@PathVariable("id") Long id) {
 		return businessService.getById(id);

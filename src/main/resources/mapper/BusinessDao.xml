@@ -24,7 +24,7 @@
 		</association>
 	</resultMap>
 	
-	<insert id="insert">
+	<insert id="insert" parameterType="d.as.bean.Business">
 		insert into business(img_file_name,title,subtitle,price,distance,number,`desc`,city,category,star_total_num,comment_total_num)
 		values(#{imgFileName},#{title},#{subtitle},#{price},#{distance},#{number},#{desc},#{city},#{category},#{starTotalNum},#{commentTotalNum})
 	</insert>

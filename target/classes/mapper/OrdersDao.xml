@@ -17,7 +17,7 @@
 		</association>
 	</resultMap>
 
-	<insert id="insert">
+	<insert id="insert" parameterType="d.as.bean.Orders">
 		insert into orders(business_id,member_id,num,comment_state,price)
 		 values(#{businessId},#{memberId},#{num},#{commentState},#{price})
 	</insert>
@@ -39,7 +39,8 @@
 	
 	<select id="select" resultMap="OrdersResultMap">
 		select o.id,o.comment_state,o.price,b.img_file_name,b.title,b.number
-		from orders o,business b where o.business_id=b.id
+		from orders o,business b 
+		where o.business_id=b.id
 		<if test="memberId != null">
 			and o.member_id = #{memberId}
 		</if>

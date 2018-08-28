@@ -18,7 +18,9 @@ public class Orders {
 	private Integer num;
 	private Integer commentState;
 	private Double price;
+	//订单商户
 	private Business business;
+	//订单买家信息
 	private Member member;
 	
 	public Long getId() {
