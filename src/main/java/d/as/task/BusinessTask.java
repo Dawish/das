@@ -36,7 +36,7 @@ public class BusinessTask {
 		
 		businessDao.updateNumber();
 		
-		logger.info("已同步！");
+		logger.info("synNumber 已同步！");
 	}
 	
 	/**
@@ -44,7 +44,6 @@ public class BusinessTask {
 	 */
 	@Transactional
 	public void synStar() {
-		logger.info("synStar start");
 		// 先获取上次同步的时间(最后同步时间)
 		SysParam sysParam = sysParamDao.selectByKey(SysParamKeyConst.LAST_SYNC_STAR_TIME);
 		Map<String,Date> map = new HashMap<>();
@@ -60,6 +59,6 @@ public class BusinessTask {
 		sysParamForUpdate.setParamKey(SysParamKeyConst.LAST_SYNC_STAR_TIME);
 		sysParamForUpdate.setParamValue(endTime);
 		sysParamDao.updateByKey(sysParamForUpdate);
-		logger.info("synStar end");
+		logger.info("synStar 已同步！");
 	}
 }
